@@ -1,9 +1,5 @@
-const IMPOSSIBLE = -1
-
-interface TestCase {
-  pancakeLine: boolean[]
-  flipperSize: number
-}
+import { IMPOSSIBLE } from "./constants"
+import type { TestCase, TestCaseResult } from "./types"
 
 const inputAdapter = (inputString: string): [number, TestCase[]] => {
   const [rawNumberOfTestCases, ...rawCases] = inputString.split("\n")
@@ -28,15 +24,14 @@ const inputAdapter = (inputString: string): [number, TestCase[]] => {
 
 const calculateFlips = (
   numberOfTestCases: number,
-  ...cases: TestCase[]
-): number[] => {
-  
+  cases: TestCase[]
+): TestCaseResult[] => {
   // write code here
 
   return [3, 0, IMPOSSIBLE]
 }
 
-const outputAdapter = (cases: number[]): string => {
+const outputAdapter = (cases: TestCaseResult[]): string => {
   return cases.reduce(
     (acc, cur, curIndex, array) =>
       acc.concat(
@@ -50,7 +45,7 @@ const outputAdapter = (cases: number[]): string => {
 
 const process = (input: string) => {
   const [numberOfTestCases, cases] = inputAdapter(input)
-  const result = calculateFlips(numberOfTestCases, ...cases)
+  const result = calculateFlips(numberOfTestCases, cases)
   const output = outputAdapter(result)
   return output
 }
