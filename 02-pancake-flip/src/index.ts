@@ -1,7 +1,7 @@
-import { IMPOSSIBLE } from "./constants"
+import greedy from "./model/greedy"
 import type { TestCase, TestCaseResult } from "./types"
 
-const inputAdapter = (inputString: string): [number, TestCase[]] => {
+const inputAdapter = (inputString: string): TestCase[] => {
   const [rawNumberOfTestCases, ...rawCases] = inputString.split("\n")
 
   const numberOfTestCases = parseInt(rawNumberOfTestCases)
@@ -19,17 +19,11 @@ const inputAdapter = (inputString: string): [number, TestCase[]] => {
     }
   })
 
-  return [numberOfTestCases, cases]
+  return cases
 }
 
-const calculateFlips = (
-  numberOfTestCases: number,
-  cases: TestCase[]
-): TestCaseResult[] => {
-  // write code here
-
-  return [3, 0, IMPOSSIBLE]
-}
+const calculateFlips = (cases: TestCase[]): TestCaseResult[] =>
+  cases.map((testCase) => greedy(testCase))
 
 const outputAdapter = (cases: TestCaseResult[]): string => {
   return cases.reduce(
@@ -44,8 +38,8 @@ const outputAdapter = (cases: TestCaseResult[]): string => {
 }
 
 const process = (input: string) => {
-  const [numberOfTestCases, cases] = inputAdapter(input)
-  const result = calculateFlips(numberOfTestCases, cases)
+  const cases = inputAdapter(input)
+  const result = calculateFlips(cases)
   const output = outputAdapter(result)
   return output
 }
