@@ -10,14 +10,15 @@ import {
 } from "./constants"
 import { MenuData, MenuItem } from "./types"
 
-const NavbarWrapper = styled.nav`
+const NavbarWrapper = styled.nav<{ $backgroundColor?: string }>`
   height: ${MENU_ITEM_HEIGHT};
   width: 100%;
   justify-content: center;
   display: flex;
 
   @media (min-width: 768px) {
-    background-color: ${MENU_BACKGROUND_COLOR};
+    background-color: ${({ $backgroundColor }) =>
+      $backgroundColor || MENU_BACKGROUND_COLOR};
   }
 
   @media (max-width: 768px) {
@@ -26,14 +27,15 @@ const NavbarWrapper = styled.nav`
   }
 `
 
-const MenuContainer = styled.ul`
+const MenuContainer = styled.ul<{ $backgroundColor?: string }>`
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
   flex: 1;
 
-  background-color: ${MENU_BACKGROUND_COLOR};
+  background-color: ${({ $backgroundColor }) =>
+    $backgroundColor || MENU_BACKGROUND_COLOR};
   color: white;
 
   @media (max-width: 768px) {
@@ -71,26 +73,34 @@ const Label = styled.label`
   }
 `
 
-interface NavbarProps {
+export interface NavbarProps {
   data: MenuData
   onClickItem: (menuItem: MenuItem) => void
+  backgroundColor?: string
 }
 
-const Navbar = ({ data, onClickItem }: NavbarProps) => {
+const Navbar = ({ data, onClickItem, backgroundColor }: NavbarProps) => {
   const renderItem = useCallback(
     (menuItem) => (
-      <Item key={menuItem.slug} data={menuItem} onClickItem={onClickItem} />
+      <Item
+        key={menuItem.slug}
+        data={menuItem}
+        onClickItem={onClickItem}
+        backgroundColor={backgroundColor}
+      />
     ),
-    [onClickItem]
+    [onClickItem, backgroundColor]
   )
 
   return (
-    <NavbarWrapper>
+    <NavbarWrapper $backgroundColor={backgroundColor}>
       <Label htmlFor="drop-navbar">
         <AiOutlineMenu size={MENU_ICON_SIZE} />
       </Label>
       <HiddenCheckbox />
-      <MenuContainer>{data.map(renderItem)}</MenuContainer>
+      <MenuContainer $backgroundColor={backgroundColor}>
+        {data.map(renderItem)}
+      </MenuContainer>
     </NavbarWrapper>
   )
 }

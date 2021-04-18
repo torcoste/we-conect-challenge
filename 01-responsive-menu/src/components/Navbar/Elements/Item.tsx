@@ -25,6 +25,7 @@ const ItemComponent = styled.li`
 interface ItemProps {
   data: MenuItem
   onClickItem: (menuItem: MenuItem) => void
+  backgroundColor?: string
 }
 
 const ItemWithoutChildren = ({ data, onClickItem }: ItemProps) => {
@@ -32,11 +33,15 @@ const ItemWithoutChildren = ({ data, onClickItem }: ItemProps) => {
   return <ItemComponent onClick={handleClick}>{data.title}</ItemComponent>
 }
 
-const Item = ({ data, onClickItem }: ItemProps) => {
+const Item = ({ data, onClickItem, backgroundColor }: ItemProps) => {
   if (data.children)
     return (
       <ItemComponent>
-        <DropdownItem data={data} onClickItem={onClickItem} />
+        <DropdownItem
+          data={data}
+          onClickItem={onClickItem}
+          backgroundColor={backgroundColor}
+        />
       </ItemComponent>
     )
 

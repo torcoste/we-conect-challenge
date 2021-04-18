@@ -4,8 +4,9 @@ import { MENU_BACKGROUND_COLOR } from "../constants"
 import { MenuItem } from "../types"
 import Item from "./Item"
 
-const DropdownContainer = styled.ul`
-  background-color: ${MENU_BACKGROUND_COLOR};
+const DropdownContainer = styled.ul<{ $backgroundColor?: string }>`
+  background-color: ${({ $backgroundColor }) =>
+    $backgroundColor || MENU_BACKGROUND_COLOR};
   display: none;
   position: static;
   list-style: none;
@@ -37,9 +38,14 @@ const HiddenCheckbox = styled.input.attrs({ type: "checkbox" })`
 interface DropdownItemProps {
   data: MenuItem
   onClickItem: (menuItem: MenuItem) => void
+  backgroundColor?: string
 }
 
-const DropdownItem = ({ data, onClickItem }: DropdownItemProps) => {
+const DropdownItem = ({
+  data,
+  onClickItem,
+  backgroundColor,
+}: DropdownItemProps) => {
   const handleClick = useCallback(() => onClickItem(data), [onClickItem, data])
   const dropId = `drop-${data.slug}`
   return (
@@ -47,7 +53,7 @@ const DropdownItem = ({ data, onClickItem }: DropdownItemProps) => {
       <HiddenCheckbox id={dropId} />
       <Label htmlFor={dropId}>
         <LabelSpan onClick={handleClick}>{data.title}</LabelSpan>
-        <DropdownContainer>
+        <DropdownContainer $backgroundColor={backgroundColor}>
           {data.children!.map((menuItem) => (
             <Item
               key={menuItem.slug}
