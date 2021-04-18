@@ -1,15 +1,22 @@
 import React, { useCallback, useState } from "react"
+import { useHistory } from "react-router-dom"
 
 import Navbar from "./components/Navbar/Navbar"
 import IFrame from "./components/IFrame/IFrame"
 
 import { emptyMenuItem, menuMockData } from "./components/Navbar/mockData"
+import { MenuItem } from "./components/Navbar/types"
 
 function App() {
-  const handleClickItem = useCallback((menuItem) => {
-    console.log(menuItem)
-    setCurrentMenuItem(menuItem)
-  }, [])
+  const history = useHistory()
+
+  const handleClickItem = useCallback(
+    (menuItem: MenuItem) => {
+      setCurrentMenuItem(menuItem)
+      history.push(menuItem.slug)
+    },
+    [history]
+  )
 
   const [currentMenuItem, setCurrentMenuItem] = useState(emptyMenuItem)
 
