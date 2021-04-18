@@ -1,13 +1,9 @@
 import React, { useCallback, useState } from "react"
-import { menuMockData } from "./mockData"
+import { emptyMenuItem, menuMockData } from "./mockData"
 import Navbar from "./Navbar"
 
 export const NavbarExample = () => {
-  const [currentMenuItem, setCurrentMenuItem] = useState({
-    title: "",
-    slug: "",
-    url: "",
-  })
+  const [currentMenuItem, setCurrentMenuItem] = useState(emptyMenuItem)
   const handleClickItem = useCallback((menuItem) => {
     setCurrentMenuItem(menuItem)
   }, [])

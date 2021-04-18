@@ -1,4 +1,4 @@
-import { MenuData } from "./types";
+import { MenuData, MenuItem } from "./types"
 
 export const menuMockData: MenuData = [
   {
@@ -24,3 +24,9 @@ export const menuMockData: MenuData = [
     url: "https://www.google.de",
   },
 ]
+
+export const emptyMenuItem: MenuItem = {
+  title: "",
+  slug: "",
+  url: "",
+}
