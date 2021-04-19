@@ -13,7 +13,7 @@ describe("Desktop <Navbar />", () => {
     cy.get("#currentMenuItemSlug").should("contain", "google")
   })
 
-  it('handle "we-connect" click correctly', () => {
+  it('handle "we-conect" click correctly', () => {
     cy.get("#we-conect").click()
     cy.get("#currentMenuItemSlug").should("contain", "we-conect")
   })

@@ -28,7 +28,7 @@
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
-    "deploy": "react-scripts build && surge build http://we-connect-responsive-menu.surge.sh/",
+    "deploy": "react-scripts build && surge build http://we-conect-responsive-menu.surge.sh/",
     "cypress": "node_modules/.bin/cypress open"
   },
   "eslintConfig": {
