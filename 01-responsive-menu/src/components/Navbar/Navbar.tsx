@@ -27,7 +27,9 @@ const NavbarWrapper = styled.nav<{ $backgroundColor?: string }>`
   }
 `
 
-const MenuContainer = styled.ul<{ $backgroundColor?: string }>`
+const MenuContainer = styled.ul.attrs({
+  id: "menu-container",
+})<{ $backgroundColor?: string }>`
   list-style: none;
   padding: 0;
   margin: 0;
@@ -94,7 +96,7 @@ const Navbar = ({ data, onClickItem, backgroundColor }: NavbarProps) => {
 
   return (
     <NavbarWrapper $backgroundColor={backgroundColor}>
-      <Label htmlFor="drop-navbar">
+      <Label htmlFor="drop-navbar" id="drop-navbar-label">
         <AiOutlineMenu size={MENU_ICON_SIZE} />
       </Label>
       <HiddenCheckbox />

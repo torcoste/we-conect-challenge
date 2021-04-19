@@ -18,12 +18,18 @@ const Template: Story<NavbarProps> = (args) => {
   }, [])
 
   return (
-    <>
+    <div id="navbar-test-mount-point">
       <Navbar {...args} onClickItem={handleClickItem} />
-      <p>{`title: ${currentMenuItem.title}`}</p>
-      <p>{`slug: ${currentMenuItem.slug}`}</p>
-      <p>{`url: ${currentMenuItem.url}`}</p>
-    </>
+      <p>
+        title: <span id="currentMenuItemTitle">{currentMenuItem.title}</span>
+      </p>
+      <p>
+        slug: <span id="currentMenuItemSlug">{currentMenuItem.slug}</span>
+      </p>
+      <p>
+        url: <span id="currentMenuItemUrl">{currentMenuItem.url}</span>
+      </p>
+    </div>
   )
 }
 
@@ -31,4 +37,3 @@ export const Default = Template.bind({})
 Default.args = {
   data: menuMockData,
 }
-

@@ -47,20 +47,26 @@ const DropdownItem = ({
   backgroundColor,
 }: DropdownItemProps) => {
   const handleClick = useCallback(() => onClickItem(data), [onClickItem, data])
+  const renderItem = useCallback(
+    (menuItem) => (
+      <Item key={menuItem.slug} data={menuItem} onClickItem={onClickItem} />
+    ),
+    [onClickItem]
+  )
   const dropId = `drop-${data.slug}`
+  const childrenMenuId = `${data.slug}-children`
   return (
     <>
       <HiddenCheckbox id={dropId} />
       <Label htmlFor={dropId}>
-        <LabelSpan onClick={handleClick}>{data.title}</LabelSpan>
-        <DropdownContainer $backgroundColor={backgroundColor}>
-          {data.children!.map((menuItem) => (
-            <Item
-              key={menuItem.slug}
-              data={menuItem}
-              onClickItem={onClickItem}
-            />
-          ))}
+        <LabelSpan id={data.slug} onClick={handleClick}>
+          {data.title}
+        </LabelSpan>
+        <DropdownContainer
+          id={childrenMenuId}
+          $backgroundColor={backgroundColor}
+        >
+          {data.children!.map(renderItem)}
         </DropdownContainer>
       </Label>
     </>

@@ -30,7 +30,11 @@ interface ItemProps {
 
 const ItemWithoutChildren = ({ data, onClickItem }: ItemProps) => {
   const handleClick = useCallback(() => onClickItem(data), [onClickItem, data])
-  return <ItemComponent onClick={handleClick}>{data.title}</ItemComponent>
+  return (
+    <ItemComponent id={data.slug} onClick={handleClick}>
+      {data.title}
+    </ItemComponent>
+  )
 }
 
 const Item = ({ data, onClickItem, backgroundColor }: ItemProps) => {
