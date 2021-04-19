@@ -43,6 +43,10 @@ const MenuContainer = styled.ul.attrs({
   @media (max-width: 768px) {
     flex-direction: column;
     display: none;
+    position: absolute;
+    top: ${MENU_ITEM_HEIGHT};
+    left: 0;
+    right: 0;
   }
   @media (min-width: 768px) {
     max-width: 500px;
