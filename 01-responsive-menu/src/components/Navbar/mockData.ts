@@ -12,9 +12,9 @@ export const menuMockData: MenuData = [
         url: "https://www.we-conect.com/liveevents",
       },
       {
-        slug: "digital-managed-events ",
-        title: "Digital Managed Events ",
-        url: "https://www.we-conect.com/l digital-managed-events ",
+        slug: "digital-managed-events",
+        title: "Digital Managed Events",
+        url: "https://www.we-conect.com/digital-managed-events",
       },
     ],
   },
