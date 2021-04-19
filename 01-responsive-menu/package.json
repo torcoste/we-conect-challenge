@@ -29,6 +29,7 @@
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
     "deploy": "react-scripts build && surge build http://we-conect-responsive-menu.surge.sh/",
+    "deploy:storybook": "build-storybook && surge storybook-static http://we-conect-responsive-menu-storybook.surge.sh/",
     "cypress": "node_modules/.bin/cypress open"
   },
   "eslintConfig": {
